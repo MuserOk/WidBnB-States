@@ -1,40 +1,35 @@
-export default function CantidadDeHuesped() {
-    return(
-        <>
-        {/*botones para seleccionar cantidad de huespedes*/}
-                <div className="hidden flex-col lg:items-center lg:w-[16%] mx-4 gap-6 lg:gap-2 ">
-                    <div className="py-2 lg:py-0">
-                        <h5 className="font-medium ">Adult</h5>
-                        <p className="text-gray-300/50 font-light pb-2 ">Ages 13 or above</p>
-                        <div className="flex w-auto justify-between items-center ">
-                            <form className="w-full">
-                                <div className="relative flex justify-between">
-                                    <button type="button" id="decrement-button" data-input-counter-decrement="counter-input" className="cursor-pointer border-1 w-6 h-6 rounded-sm text-gray-400/90 border-gray-400/90 bg-gray-300/50 p-1 flex justify-center items-center shrink-0 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:active:bg-gray-700 hover:bg-gray-200 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">-</button>
-                                    <input type="text" id="counter-input" data-input-counter className="shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center" placeholder="" value="2" required />
-                                    <button type="button" id="increment-button" data-input-counter-increment="counter-input" className="cursor-pointer border-1 w-6 h-6 rounded-sm text-gray-400/90 border-gray-400/90 bg-gray-300/50 p-1 flex justify-center items-center shrink-0 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:active:bg-gray-700 hover:bg-gray-200 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">+</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div className="py-2 ">
-                        <h5 className="font-medium ">Children</h5>
-                        <p className="text-gray-300/50 font-light pb-2 ">Ages 13 or above</p>
-                        <div className="flex w-auto justify-between items-center ">
-                            <form className="w-full">
-                                <div className="relative flex justify-between">
-                                    <button type="button" id="decrement-button" data-input-counter-decrement="counter-input" className="cursor-pointer border-1 w-6 h-6 rounded-sm text-gray-400/90 border-gray-400/90 bg-gray-300/50 p-1 flex justify-center items-center shrink-0 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:active:bg-gray-700 hover:bg-gray-200 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">-</button>
-                                    <input type="text" id="counter-input" data-input-counter className="shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center" placeholder="" value="0" required />
-                                    <button type="button" id="increment-button" data-input-counter-increment="counter-input" className="cursor-pointer border-1 w-6 h-6 rounded-sm text-gray-400/90 border-gray-400/90 bg-gray-300/50 p-1 flex justify-center items-center shrink-0 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:active:bg-gray-700 hover:bg-gray-200 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">+</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-[36%]">
-                        
-                </div>
-        
-        </>
-    )
-    
-};
+import React from "react";
+import { useState } from "react";
+
+export default function CantidadDeHuesped({adults, setAdults, children, setChildren}) {
+
+  const totalGuests = adults + children;
+  const guestText = totalGuests > 0 ? `${totalGuests} Guests` : "Add guests";
+
+  return (
+    <div>
+
+      <div className="flex flex-col gap-1">
+        <div>
+          <span className="font-medium text-xs sm:text-md dark:text-white">Adults</span>
+          <div className="text-gray-400 mb-1 text-xs">Ages 13 or above</div>
+          <div className="flex gap-3 items-center">
+            <button onClick={() => setAdults(Math.max(0, adults - 1))} className="px-3 py-1 bg-gray-200 rounded-lg">-</button>
+            <span className="dark:text-white">{adults}</span>
+            <button onClick={() => setAdults(adults + 1)} className="px-3 py-1 bg-gray-200 rounded-lg">+</button>
+          </div>
+        </div>
+
+        <div>
+          <span className="font-medium  text-xs sm:text-md dark:text-white ">Children</span>
+          <div className="text-gray-400  text-xs mb- 1">Ages 2 – 12 </div>
+          <div className="flex gap-3 items-center">
+            <button onClick={() => setChildren(Math.max(0, children - 1))} className="px-3 py-1 bg-gray-200 rounded-lg">-</button>
+            <span className="dark:text-white">{children}</span>
+            <button onClick={() => setChildren(children + 1)} className="px-3 py-1 bg-gray-200 rounded-lg">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
