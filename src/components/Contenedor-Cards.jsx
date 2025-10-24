@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "./card";
 
-export default function ContenedorCards({ data }) {
-  if (!data || data.length === 0) {
+export default function ContenedorCards({ data, loading }) {
+    if (loading) {
     return (
-      <>
+      <main className="flex-1 flex items-center justify-center flex-col py-10">
         {loading && (
           <main className="flex-1 flex items-center justify-center flex-col py-10">
 
@@ -27,13 +27,38 @@ export default function ContenedorCards({ data }) {
           </main>
 
         )}
+      </main>
+    );
+  }
+
+
+  if (!data || data.length === 0) {
+    return (
+      <main className="flex-1 flex items-center justify-center flex-col py-10">
+        <p className="text-gray-500 text-lg">No se encontraron resultados.</p>
+      </main>
+    );
+  }
   
 
 
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5 lg:px-10">
-          {data.map((stay, i) => (
-            <Card key={i} stay={stay} />
-          ))}
-        </section>
-      </>)}
-}   
+  return (
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5 lg:px-10">
+      {data.map((stay, i) => (
+        <Card key={i} stay={stay} />
+      ))}
+    </section>
+  );
+  
+    return (
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5 lg:px-10">
+      {data.map((stay, i) => (
+        <Card key={i} stay={stay} />
+      ))}
+    </section>
+  );
+  
+}
+
+
+   

@@ -1,10 +1,13 @@
 import React from "react";
-import { useState } from "react";
 
 export default function CantidadDeHuesped({adults, setAdults, children, setChildren}) {
-
-  const totalGuests = adults + children;
-  const guestText = totalGuests > 0 ? `${totalGuests} Guests` : "Add guests";
+    
+  
+  console.log(adults);
+      console.log(children);
+      
+    
+    
 
   return (
     <div>
@@ -22,7 +25,7 @@ export default function CantidadDeHuesped({adults, setAdults, children, setChild
 
         <div>
           <span className="font-medium  text-xs sm:text-md dark:text-white ">Children</span>
-          <div className="text-gray-400  text-xs mb- 1">Ages 2 – 12 </div>
+          <div className="text-gray-400  text-xs mb-1">Ages 2 – 12 </div>
           <div className="flex gap-3 items-center">
             <button onClick={() => setChildren(Math.max(0, children - 1))} className="px-3 py-1 bg-gray-200 rounded-lg">-</button>
             <span className="dark:text-white">{children}</span>

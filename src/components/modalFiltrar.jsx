@@ -20,9 +20,14 @@ export default function ModalFiltrar({ isOpen, onClose, onFilter }) {
 
   if (!isOpen) return null;
 
-  const totalGuests = adults + children;
+  const totalGuests = Number(adults) + Number(children)
+
+  console.log(totalGuests);
+  
   const guestText = totalGuests > 0 ? `${totalGuests} Guests` : "Add guests";
 
+  console.log(guestText);
+  
   return (
     <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-50">
       <div
